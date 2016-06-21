@@ -28,10 +28,13 @@ class GoogleMaps
     public function geoCoordenates($adress){
 
         $config = Config::all();
-        $url = $config['url']  . urlencode($adress) .'&key=' .  $config['key'];
+
+        //&components=country:ES
+        //?address=Torun&components=administrative_area:TX|country:US&
+        $url = $config['url']  . urlencode($adress) . "&key={$config['key']}";
 
         try{
-            $results = $this->loadUrl($url);
+            $results = $this->loadUrl($url)->results;
             var_dump($results);die;
             $coordenates = $results['geometry'];
             var_dump($coordenates);die;
@@ -48,7 +51,17 @@ class GoogleMaps
         }catch (\Exception $e){
 
         }
+    }
 
+    public static function addFilterCountry(){
+
+    }
+
+    public static function addFilterRegion(){
+
+    }
+
+    public static function addFilterAdministrateArea(){
 
     }
 
