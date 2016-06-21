@@ -11,7 +11,7 @@ namespace Maps\App\Config;
 
 class Config
 {
-    public static function config(){
+    public static function all(){
 
         return [
             'url' => 'maps.google.com',
