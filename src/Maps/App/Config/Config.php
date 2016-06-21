@@ -14,7 +14,7 @@ class Config
     public static function all(){
 
         return [
-            'url' => 'maps.google.com',
+            'url' => 'https://maps.googleapis.com/maps/api/geocode/json?address=',
             'key' => 'AIzaSyASlWsBkfJ8sX_uPQbAnYGlq32-uztwCbU',
         ];
 

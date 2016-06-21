@@ -10,37 +10,45 @@ class GoogleMaps
 {
 
     private $client;
-    private $config;
 
     public function __construct()
     {
         $this->client = new Client();
-        $this->config = Config::all();
     }
 
     public function loadUrl($url){
-        $result = '';
+        $response = $this->client->get($url);
 
-        return $result;
+        if($response->getStatusCode() != 200){
+            throw new \Exception('Bad Request');
+        }
+        return json_decode($response->getBody()->getContents());
     }
 
-    public function geoLocal($adress){
+    public function geoCoordenates($adress){
 
-        $url = 'http://'. $this->config['url'] .'/maps/geo?output=csv&key='.
-            $this->config['key'] .'&q='. urlencode($adress);
+        $config = Config::all();
+        $url = $config['url']  . urlencode($adress) .'&key=' .  $config['key'];
 
-        $data = $this->loadUrl($url);
-        list($statusResponse, $zoom, $latitude, $longitude) = explode(',', $data);
+        try{
+            $results = $this->loadUrl($url);
+            var_dump($results);die;
+            $coordenates = $results['geometry'];
+            var_dump($coordenates);die;
 
-        if($statusResponse != 200){
+            list($statusResponse, $zoom, $latitude, $longitude) = explode(',', $data);
+
+            return [
+                'lat' => $latitude,
+                'long' => $longitude,
+                'zomm' => $zoom,
+                'address' => $adress
+            ];
+
+        }catch (\Exception $e){
 
         }
-        return [
-            'lat' => $latitude,
-            'long' => $longitude,
-            'zomm' => $zoom,
-            'address' => $adress
-        ];
+
 
     }
 
