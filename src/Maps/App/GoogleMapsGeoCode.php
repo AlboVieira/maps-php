@@ -50,13 +50,13 @@ class GoogleMapsGeoCode
             $geometry = reset($results)->geometry;
             $location = $geometry->location;
 
-            $retorno =  [
+            $data =  [
                 'address' => $adress,
                 'lat' => $location->lat,
                 'long' => $location->lng
             ];
 
-            return json_encode($retorno);
+            return json_encode($data);
 
         }catch (\Exception $e){
             echo $e->getMessage();
