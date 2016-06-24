@@ -15,7 +15,7 @@ class Config
 
         return [
             'url' => 'https://maps.googleapis.com/maps/api/geocode/json?address=',
-            'key' => 'AIzaSyASlWsBkfJ8sX_uPQbAnYGlq32-uztwCbU',
+            'key' => 'YOUR_GOOGLEAPI_KEY',
         ];
 
     }
