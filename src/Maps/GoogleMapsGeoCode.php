@@ -42,8 +42,7 @@ class GoogleMapsGeoCode
         try{
             $results = $this->loadUrl($url)->results;
 
-            $count = count($results);
-            if($count > 1){
+            if(count($results) > 1){
                 throw new \Exception('More than one register found for the address given, be more specific');
             }
 
