@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Maps\App;
+namespace Maps;
 
 use GuzzleHttp\Client;
-use Maps\App\Config\Config;
+use Maps\Config\Config;
 
 class GoogleMapsGeoCode
 {
@@ -79,25 +79,6 @@ class GoogleMapsGeoCode
         }
 
         $result = json_decode($response->getBody()->getContents());
-
-        switch($result->status){
-            case self::ZERO_RESULTS :
-                throw new \Exception('No address found');
-                break;
-            case self::OVER_QUERY_LIMIT :
-                throw new \Exception('Limit exceeded');
-                break;
-            case self::REQUEST_DENIED :
-                throw new \Exception('Request Denied');
-                break;
-            case self::INVALID_REQUEST :
-                throw new \Exception('Invalid Request');
-                break;
-            case self::UNKNOWN_ERROR :
-                throw new \Exception('Something wrong on Google\'s  Server');
-                break;
-        }
-
         return $result;
     }
 

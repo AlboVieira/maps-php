@@ -7,7 +7,7 @@
  * Time: 16:27
  */
 
-namespace Maps\App\Config;
+namespace Maps\Config;
 
 class Config
 {
@@ -15,7 +15,7 @@ class Config
 
         return [
             'url' => 'https://maps.googleapis.com/maps/api/geocode/json?address=',
-            'key' => 'YOUR_GOOGLEAPI_KEY',
+            'key' => 'AIzaSyASlWsBkfJ8sX_uPQbAnYGlq32-uztwCbU',
         ];
 
     }
